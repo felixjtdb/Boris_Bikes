@@ -1,6 +1,6 @@
 
 class DockingStation
-  DockCapacity = 20
+  DEFAULT_CAPACITY = 20
   def initialize
     @bikes = []
   end
@@ -16,7 +16,7 @@ class DockingStation
     end
   end
   def full?
-    if @bikes.length == DockCapacity
+    if @bikes.length == DEFAULT_CAPACITY
       true
     else
       false

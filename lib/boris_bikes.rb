@@ -1,6 +1,7 @@
 
 class DockingStation
   def release_bike
+    fail "sorry station is empty" if @bike == nil
     Bike.new
   end
 

@@ -17,6 +17,11 @@ end
 		station = DockingStation.new
 		expect{station.release_bike}.to raise_error "sorry station is empty"
 end
+  it "rases an error when dock is full" do
+    station = DockingStation.new
+		station.dock("bike2")
+		expect{station.dock("bike")}.to raise_error "dock is full"
+  end
 end
 RSpec.describe Bike do
   it "creates instance of a bike class" do

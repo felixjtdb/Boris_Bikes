@@ -5,12 +5,25 @@ class DockingStation
     @bikes = []
   end
   def release_bike
-    fail "sorry station is empty" if @bike == nil
+    fail "sorry station is empty" if empty?
     Bike.new
   end
-
+  def empty?
+    if @bikes.length == 0
+      true
+    else
+      false
+    end
+  end
+  def full?
+    if @bikes.length == DockCapacity
+      true
+    else
+      false
+    end
+  end
   def dock(bike)
-    fail "dock is full" if @bikes.length == DockCapacity
+    fail "dock is full" if full?
     @bikes << bike
   end
 

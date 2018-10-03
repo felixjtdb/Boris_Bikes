@@ -1,13 +1,17 @@
 
 class DockingStation
+  DockCapacity = 20
+  def initialize
+    @bikes = []
+  end
   def release_bike
     fail "sorry station is empty" if @bike == nil
     Bike.new
   end
 
   def dock(bike)
-    fail "dock is full" if @bike
-    @bike = bike
+    fail "dock is full" if @bikes.length == DockCapacity
+    @bikes << bike
   end
 
   attr_reader :bike

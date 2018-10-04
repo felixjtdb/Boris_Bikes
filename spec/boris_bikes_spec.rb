@@ -23,11 +23,20 @@ end
 		expect{station.dock("bike")}.to raise_error "dock is full"
   end
   it 'sets docking capacity to 20' do
-expect(subject.capacity).to eq (DockingStation::DEFAULT_CAPACITY)
+    expect(subject.capacity).to eq (DockingStation::DEFAULT_CAPACITY)
+	end
 end
-end
+
 RSpec.describe Bike do
   it "creates instance of a bike class" do
   	expect(Bike.new).to respond_to(:working?)
 	end
+	it "report bike is broken" do
+		expect(Bike.new).to respond_to(:report_broken)
+	end
+	it "report_broken makes working? return false" do
+	  bike = Bike.new
+	  bike.report_broken
+		expect(bike.working?).to eq(false)
+  end
 end

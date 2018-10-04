@@ -1,3 +1,4 @@
+require_relative 'bike'
 
 class DockingStation
   attr_reader :bikes
@@ -8,10 +9,15 @@ class DockingStation
     @bikes = []
     @capacity = capacity
   end
+
   def release_bike
-    fail "sorry station is empty" if empty?
-    Bike.new
+    fail "sorry station is empty" if @bikes.empty?
+    @bikes.each_with_index do |bike, index|
+      return @bikes.delete_at(index) if bike.working?
+    end
+    fail "sorry no working bikes"
   end
+
   def empty?
     if @bikes.length == 0
       true
@@ -32,21 +38,3 @@ class DockingStation
   end
 
 end
-
-class Bike
-
-  def initialize
-    @working = true
-  end
-
-  def working?
-    @working
-  end
-
-  def report_broken
-    @working = false
-  end
-end
-
-# docking_station = DockingStation.new
-# docking_station.release_bike

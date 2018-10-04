@@ -1,5 +1,5 @@
 require 'boris_bikes'
-
+require "pry"
 RSpec.describe DockingStation do
 	it 'releases a bike' do
 		bike = Bike.new
@@ -19,9 +19,12 @@ end
 end
   it "rases an error when dock is full" do
     station = DockingStation.new
-		20.times{station.dock(Bike.new)} 
+		20.times{station.dock(Bike.new)}
 		expect{station.dock("bike")}.to raise_error "dock is full"
   end
+  it 'sets docking capacity to 20' do
+expect(subject.capacity).to eq (DockingStation::DEFAULT_CAPACITY)
+end
 end
 RSpec.describe Bike do
   it "creates instance of a bike class" do

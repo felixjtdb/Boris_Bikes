@@ -19,7 +19,7 @@ end
 end
   it "rases an error when dock is full" do
     station = DockingStation.new
-		20.times{station.dock(Bike.new)}
+		subject.capacity.times{station.dock(Bike.new)}
 		expect{station.dock("bike")}.to raise_error "dock is full"
   end
   it 'sets docking capacity to 20' do

@@ -12,36 +12,31 @@ describe DockingStation do
 	describe "#release_bike" do
 
 		it 'releases a bike' do
-			station = DockingStation.new
-			station.dock(bike_working)
-			expect(station).to respond_to(:release_bike)
+			subject.dock(bike_working)
+			expect(subject).to respond_to(:release_bike)
 		end
-		it "raises an error when station is empty" do
-			station = DockingStation.new
-			expect{station.release_bike}.to raise_error "sorry station is empty"
+		it "raises an error when subject is empty" do
+			expect{subject.release_bike}.to raise_error "sorry station is empty"
 		end
-		it 'bikes at station broken' do
-			station = DockingStation.new
-			station.dock(bike_not_working)
-			expect{station.release_bike}.to raise_error "sorry no working bikes"
+		it 'bikes at subject broken' do
+			subject.dock(bike_not_working)
+			expect{subject.release_bike}.to raise_error "sorry no working bikes"
 		end
 		it '1 broken bike and 1 working bike, releases working bike' do
-			station = DockingStation.new
-			station.dock(bike_working)
-			station.dock(bike_not_working)
-			expect(station.release_bike).to eq(bike_working)
+			subject.dock(bike_working)
+			subject.dock(bike_not_working)
+			expect(subject.release_bike).to eq(bike_working)
 		end
 	end
 
 	describe "#dock" do
 
 		it "docks a bike" do
-			expect(DockingStation.new).to respond_to(:dock)
+			expect(subject).to respond_to(:dock)
 		end
 		it "rases an error when dock is full" do
-			station = DockingStation.new
-			subject.capacity.times{station.dock(bike_working)}
-			expect{station.dock(bike_working)}.to raise_error "dock is full"
+			subject.capacity.times{subject.dock(bike_working)}
+			expect{subject.dock(bike_working)}.to raise_error "dock is full"
 		end
 	end
 end

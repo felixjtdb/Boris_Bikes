@@ -20,21 +20,12 @@ class DockingStation
 
   def empty?
     if @bikes.length == 0
-      true
-    else
-      false
-    end
   end
   def full?
     if @bikes.length == @capacity
-      true
-    else
-      false
-    end
   end
   def dock(bike)
     fail "dock is full" if full?
     @bikes << bike
   end
-
 end
